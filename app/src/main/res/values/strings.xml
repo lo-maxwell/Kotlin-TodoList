@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TODOList</string>
+    <string name="EditTextTODOTitleHint">Enter TODO Title</string>
+    <string name="ButtonAddTODOText">Add TODO</string>
+    <string name="ButtonDeleteDoneTODOsText">Delete Done</string>
+    <string name="SampleText">Sample</string>
+</resources>
