@@ -29,7 +29,7 @@ class FragmentDBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?)
     }
 
     // We only care about the item with ID 1
-    fun addItem(id: Int, name : String){
+    fun addItem(name : String){
         val db = this.writableDatabase
 
         // Check if the table is empty
@@ -41,7 +41,7 @@ class FragmentDBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?)
         // If the table is empty, insert the item
         if (count == 0) {
             val values = ContentValues()
-            values.put(ID_COL, id)
+            values.put(ID_COL, 1)
             values.put(TEXT_COL, name)
             db.insert(TABLE_NAME, null, values)
         } else {
@@ -56,7 +56,17 @@ class FragmentDBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?)
     fun getAllItems(): Cursor? {
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
+    }
 
+    fun getSingleItemText(): String {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
+        val textColIndex = cursor.getColumnIndex(TEXT_COL)
+        var text = ""
+        if (textColIndex != -1 && cursor.moveToFirst())
+            text = cursor.getString(textColIndex)
+        cursor.close()
+        return text
     }
 
     fun loadAndParseItemsOnInit() : String {
@@ -75,6 +85,8 @@ class FragmentDBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?)
                     break
                 }
             } while (cursor.moveToNext())
+        } else {
+            addItem(returnText)
         }
         cursor.close()
 
@@ -114,7 +126,7 @@ class FragmentDBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?)
     companion object{
         // here we have defined variables for our database
 
-        private val DATABASE_NAME = "FRAGMENT_DB"
+        val DATABASE_NAME = "FRAGMENT_DB"
 
         private val DATABASE_VERSION = 1
 
