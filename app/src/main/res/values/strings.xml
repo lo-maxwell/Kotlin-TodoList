@@ -4,4 +4,8 @@
     <string name="ButtonAddTODOText">Add TODO</string>
     <string name="ButtonDeleteDoneTODOsText">Delete Done</string>
     <string name="SampleText">Sample</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="editTextInputBoxHint">Enter a String</string>
+    <string name="buttonUpdateString">Update</string>
+    <string name="fragmentText">Fragment %1$d : %2$s</string>
 </resources>

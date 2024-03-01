@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TodoAdapter (
     private var todos:  MutableList<TodoItem>,
-    private var db: DBHelper,
+    private var db: TodoDBHelper,
     private var initFinished: Boolean = false,
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
